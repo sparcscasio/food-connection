@@ -49,7 +49,7 @@ const FollowingrPage = () => {
 
   return (
     <SafeAreaView style={styles.Container}>
-      <TextInputAreaFollow placeholder="팔로워검색" />
+      <TextInputAreaFollow placeholder="팔로잉검색" />
       <FlatList
         data={DATA}
         renderItem={({ item }) => {

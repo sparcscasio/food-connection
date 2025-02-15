@@ -17,8 +17,11 @@ export type RootStackParamList = {
   FollowingPage: undefined;
   FollowerPage: undefined;
   UserPage: { uid: String };
+<<<<<<< HEAD
   Login: undefined;
   Signup: undefined;
+=======
+>>>>>>> df3262b6ba7804bf6015212adecc7971ee3f2675
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -35,10 +38,18 @@ const App2: React.FC = () => {
         <Stack.Screen name="FeedDetail" component={FeedDetailArea} />
         <Stack.Screen name="FollowingPage" component={FollowingPage} />
         <Stack.Screen name="FollowerPage" component={FollowerPage} />
+<<<<<<< HEAD
 
         <Stack.Screen name="UserPage" component={UserPage} />
         <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Signup" component={SignupPage} />
+=======
+<<<<<<< HEAD
+        <Stack.Screen name="UserPage" component={UserPage} />
+=======
+        <Stack.Screen name="ProfileDetail" component={UserPage} />
+>>>>>>> 29027e3c686fb5c1348b81a99fac662cf6f49865
+>>>>>>> df3262b6ba7804bf6015212adecc7971ee3f2675
       </Stack.Navigator>
     </NavigationContainer>
   );
