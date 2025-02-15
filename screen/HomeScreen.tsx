@@ -1,15 +1,13 @@
-import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons"; // Expo 환경이면 사용
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from "react";
 // import MaterialIcons from "react-native-vector-icons/MaterialIcons"; // React Native CLI 환경이면 사용
 
 import HomePage from "./HomePage";
-import SearchPage from "./SearchPage";
-import NewPostPage from "./NewPostPage";
-import MyPage from "./MyPage";
 import MapPage from "./MapPage";
-import { SafeAreaView } from "react-native";
+import MyPage from "./MyPage";
+import NewPostPage from "./NewPostPage";
+import SearchPage from "./SearchPage";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,12 +16,15 @@ const HomeScreen: React.FC = () => {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused }) => {
-          const iconMapping: Record<string, keyof typeof MaterialIcons.glyphMap> = {
+          const iconMapping: Record<
+            string,
+            keyof typeof MaterialIcons.glyphMap
+          > = {
             "메인 페이지": "home",
             "검색 페이지": "search",
             "new post": "add-box",
             "map page": "explore",
-            "my page" : "person",
+            "my page": "person",
           };
 
           const iconName = iconMapping[route.name] || "help-outline"; // 기본값 설정

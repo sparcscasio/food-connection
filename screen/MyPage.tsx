@@ -1,11 +1,18 @@
-import { View, Text } from "react-native";
+import React from "react";
+import { SafeAreaView } from "react-native";
+import UserPage from "./UserPage";
 
-const MyPage: React.FC = () => {
-    return (
-        <View>
-            <Text>My Page</Text>
-        </View>
-    )
+interface MyPageProps {
+  role: string;
 }
+
+const MyPage: React.FC<MyPageProps> = ({ role }) => {
+  return (
+    <SafeAreaView>
+      {/* {role === "user" ? <UserPage /> : <FoodtruckPage />} */}
+      <UserPage />
+    </SafeAreaView>
+  );
+};
 
 export default MyPage;
