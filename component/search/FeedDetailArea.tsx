@@ -32,6 +32,7 @@ const placeHolderList : FeedAreaProps[] = [
 const FeedDetailArea : React.FC<FeedDetailAreaProps> = ({route}) => {
     const { uid } = route.params;
 
+    // uid로부터 첫번째 게시글 받아오기
     const placeHolderFirstFeed : FeedAreaProps = {
         uid: uid,
         user_uid: "",
