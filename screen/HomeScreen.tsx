@@ -1,7 +1,7 @@
-import { MaterialIcons } from "@expo/vector-icons"; // Expo 환경이면 사용
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-// import MaterialIcons from "react-native-vector-icons/MaterialIcons"; // React Native CLI 환경이면 사용
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { StyleSheet } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons"; 
 
 import HomePage from "./HomePage";
 import MapPage from "./MapPage";

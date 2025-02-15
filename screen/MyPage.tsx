@@ -4,10 +4,10 @@ import FoodtruckPage from "./FoodtruckPage";
 import UserPage from "./UserPage";
 
 interface MyPageProps {
-  role: string;
+  role?: string;
 }
 
-const MyPage: React.FC<MyPageProps> = ({ role = "foodtruck" }) => {
+const MyPage: React.FC<MyPageProps> = ({ role = "user" }) => {
   return (
     <SafeAreaView>
       {role === "user" ? <UserPage /> : <FoodtruckPage />}

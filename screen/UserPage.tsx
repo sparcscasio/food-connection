@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import {
   FlatList,
@@ -50,10 +50,12 @@ const MiddleContent = ({
     </Pressable>
   );
 };
-
+type UserPageRouteProp = RouteProp<RootStackParamList, "UserPage">;
+type NavigationProp = StackNavigationProp<RootStackParamList>;
 const UserPage = () => {
-  type NavigationProp = StackNavigationProp<RootStackParamList>;
   const navigation = useNavigation<NavigationProp>();
+  const route = useRoute<UserPageRouteProp>();
+  const { uid } = route.params;
 
   const placeholderSearchView: FeedPreviewProps[] = Array.from(
     { length: 90 },
@@ -65,6 +67,7 @@ const UserPage = () => {
     <SafeAreaView style={styles.SafeAreaView}>
       <View style={styles.profileContainer}>
         <ProfileBox />
+        <Text>uid:{uid}</Text>
       </View>
       <View style={styles.middleContainer}>
         <MiddleContent
@@ -89,7 +92,8 @@ const UserPage = () => {
           keyExtractor={(item) => item.uid}
           numColumns={3}
           renderItem={({ item }) => (
-            <FeedPreview uid={item.uid} img_uri={item.img_uri} />
+            // <FeedPreview uid={item.uid} img_uri={item.img_uri} />
+            <FeedPreview uid={item.uid} />
           )}
           columnWrapperStyle={styles.row}
           style={styles.listWrapper}

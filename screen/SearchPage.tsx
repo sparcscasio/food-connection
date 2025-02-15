@@ -11,7 +11,9 @@ const SearchPage: React.FC = () => {
 
     return (
         <SafeAreaView style={styles.safeAreaContainer}>
-        <TextInputArea></TextInputArea>
+            <View style={styles.searchWrapper}>
+                <TextInputArea />
+            </View>
             <FlatList
             data={placeholderSearchView}
             keyExtractor={(item) => item.uid}
@@ -36,6 +38,11 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         flexDirection: 'column',
         marginBottom: 60,
+    },
+    searchWrapper: {
+        paddingLeft: 15,
+        paddingRight: 15,
+        marginBottom: 20,
     },
     safeAreaContainer: {
       backgroundColor: "white",

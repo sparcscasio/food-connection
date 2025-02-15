@@ -22,7 +22,7 @@ const TextInputArea: React.FC = () => {
                 style={[styles.textInput, { color: "black" }]}
                 value={text}
                 onChangeText={setText}
-                placeholder="메뉴 또는 푸드트럭 명을 검색해보세요!"
+                placeholder="검색"
                 placeholderTextColor="grey"
                 multiline={false}
                 textAlignVertical="center" 
@@ -38,7 +38,6 @@ const TextInputArea: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    padding: 10,
     display: 'flex',
     flexDirection: 'row',
     gap: 10,
