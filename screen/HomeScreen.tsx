@@ -1,9 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons"; // Expo 환경이면 사용
-// import MaterialIcons from "react-native-vector-icons/MaterialIcons"; // React Native CLI 환경이면 사용
-
+import { MaterialIcons } from "@expo/vector-icons"; 
 import HomePage from "./HomePage";
 import SearchPage from "./SearchPage";
 import NewPostPage from "./NewPostPage";
