@@ -1,16 +1,16 @@
 import React from "react";
 import { SafeAreaView } from "react-native";
+import FoodtruckPage from "./FoodtruckPage";
 import UserPage from "./UserPage";
 
 interface MyPageProps {
   role?: string;
 }
 
-const MyPage: React.FC<MyPageProps> = ({ role }) => {
+const MyPage: React.FC<MyPageProps> = ({ role = "user" }) => {
   return (
     <SafeAreaView>
-      {/* {role === "user" ? <UserPage /> : <FoodtruckPage />} */}
-      <UserPage />
+      {role === "user" ? <UserPage /> : <FoodtruckPage />}
     </SafeAreaView>
   );
 };
