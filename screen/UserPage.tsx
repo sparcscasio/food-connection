@@ -52,8 +52,8 @@ const MiddleContent = ({
 };
 
 const UserPage = () => {
-  const navigation =
-    useNavigation<StackNavigationProp<RootStackParamList, "FollowingPage">>();
+  type NavigationProp = StackNavigationProp<RootStackParamList>;
+  const navigation = useNavigation<NavigationProp>();
 
   const placeholderSearchView: FeedPreviewProps[] = Array.from(
     { length: 90 },
