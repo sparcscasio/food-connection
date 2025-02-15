@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native";
 import UserPage from "./UserPage";
 
 interface MyPageProps {
-  role: string;
+  role?: string;
 }
 
 const MyPage: React.FC<MyPageProps> = ({ role }) => {

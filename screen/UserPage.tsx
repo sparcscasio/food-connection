@@ -89,7 +89,8 @@ const UserPage = () => {
           keyExtractor={(item) => item.uid}
           numColumns={3}
           renderItem={({ item }) => (
-            <FeedPreview uid={item.uid} img_uri={item.img_uri} />
+            // <FeedPreview uid={item.uid} img_uri={item.img_uri} />
+            <FeedPreview uid={item.uid} />
           )}
           columnWrapperStyle={styles.row}
           style={styles.listWrapper}
