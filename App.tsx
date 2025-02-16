@@ -17,7 +17,7 @@ export type RootStackParamList = {
   FeedDetail: { uid: string };
   FollowingPage: undefined;
   FollowerPage: undefined;
-  UserPage: { uid: String };
+  UserPage: { uid: string };
   FoodtruckPage: { uid: string };
   Login: undefined;
   Signup: undefined;
