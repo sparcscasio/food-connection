@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { useRecoilState } from "recoil";
+import { loginState } from "../utils/recoil/atoms/loginState";
 
 const LoginPage = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
 
   const handleLogin = () => {
     // 로그인 로직 (예: 서버 요청)
     console.log("Logged in with", email, password);
+    setIsLoggedIn(true);
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "HomeScreen" }],
+    });
   };
   return (
     <View style={styles.container}>

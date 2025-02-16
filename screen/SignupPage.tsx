@@ -1,10 +1,17 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { useRecoilState } from "recoil";
+import { loginState } from "../utils/recoil/atoms/loginState";
+import { StackScreenProps } from "@react-navigation/stack";
+import { RootStackParamList } from "../App";
+
+type Props = StackScreenProps<RootStackParamList, "Login">;
 
 const SignupPage = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
 
   const handleSignUp = () => {
     if (password !== confirmPassword) {
@@ -13,6 +20,12 @@ const SignupPage = ({ navigation }: any) => {
     }
     // 회원가입 로직 (예: 서버 요청)
     console.log("Signed up with", email, password);
+    setIsLoggedIn(true);
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "HomeScreen" }],
+    });
+    
   };
   return (
     <View style={styles.container}>
@@ -37,11 +50,11 @@ const SignupPage = ({ navigation }: any) => {
         value={confirmPassword}
         onChangeText={setConfirmPassword}
       />
-      <View style={styles.Button}>
-        <Pressable onPress={handleSignUp}>
-          <Text style={styles.ButtonText}>Sign up</Text>
-        </Pressable>
-      </View>
+      <Pressable onPress={handleSignUp}>
+        <View style={styles.Button}>
+            <Text style={styles.ButtonText}>Sign up</Text>
+        </View>
+      </Pressable>
       <Text style={styles.link} onPress={() => navigation.navigate("Login")}>
         Already have an account? Log In
       </Text>

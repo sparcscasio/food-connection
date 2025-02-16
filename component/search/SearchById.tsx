@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
   FlatList,
   GestureResponderEvent,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
@@ -16,6 +17,8 @@ interface User {
 
 const SearchById = () => {
   const [searchId, setSearchId] = useState<string>(""); // 검색 ID
+  const [selectedId, setSelectedId] = useState<string>("");
+  const [selectedName, setSelectedName] = useState<string>("");
   const [users, setUsers] = useState<User[]>([]); // 사용자 목록
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]); // 필터링된 사용자 목록
 
@@ -26,6 +29,16 @@ const SearchById = () => {
     { id: "sam789", name: "Sam Lee" },
     { id: "alex112", name: "Alex Kim" },
   ];
+
+  const getUserNameById = (id: string): string | undefined => {
+    const user = dummyUsers.find(user => user.id === id);
+    return user ? user.name : undefined; // id가 없으면 undefined 반환
+  };
+
+  const handleIdPress = (id : string) => {
+    console.log(id);
+    setSelectedId(id);
+  };
 
   // 사용자가 입력할 때마다 검색 결과 업데이트
   useEffect(() => {
@@ -48,51 +61,62 @@ const SearchById = () => {
   };
 
   const renderItem = ({ item }: { item: User }) => (
-    <View style={styles.resultItem}>
-      <Text style={styles.resultText}>
-        {item.name} ({item.id})
-      </Text>
-    </View>
+    <Pressable onPress={() => {handleIdPress(item.id)}}>
+      <View style={styles.resultItem}>
+        <Text style={styles.resultText}>
+          {item.name} ({item.id})
+        </Text>
+      </View>
+    </Pressable>
   );
 
-  function handleCancel(event: GestureResponderEvent): void {
-    throw new Error("Function not implemented.");
+  // function handleCancel(event: GestureResponderEvent): void {
+  //   throw new Error("Function not implemented.");
+  // }
+
+  const handleCancel = () => {
+    setSearchId("");
+    setSelectedId("");
   }
 
   return (
     <>
       <View style={styles.TopContainer}>
-        <View style={{ flex: 0.3 }}>
-          <MaterialIcons name="search" size={24} color="grey" />
-        </View>
         {/* TextInput: 검색을 위한 입력란 */}
         <View style={{ flex: 1 }}>
-          <TextInput
-            style={styles.input}
-            placeholder="Search by ID..."
-            value={searchId}
-            onChangeText={handleSearchInput}
-          />
+          { selectedId ? 
+              <View style={styles.input}>
+                <Pressable>
+                  <Text style={styles.selectedText}>
+                    {`@${getUserNameById(selectedId)}`}
+                  </Text>
+                </Pressable>
+              </View>
+              : <TextInput
+                style={styles.input}
+                placeholder="ID / 이름"
+                value={searchId}
+                onChangeText={handleSearchInput}
+              />
+          }
         </View>
-        <View style={{ flex: 0.3 }}>
           <MaterialIcons
             name="cancel"
             size={24}
             color="grey"
             onPress={handleCancel}
           />
-        </View>
       </View>
       <View>
         {/* 검색 결과를 보여주는 FlatList */}
-        <FlatList
+        { searchId && !selectedId && <FlatList
           data={filteredUsers}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           ListEmptyComponent={
             <Text style={styles.emptyText}>No results found</Text>
           }
-        />
+        /> }
       </View>
     </>
   );
@@ -101,20 +125,25 @@ const SearchById = () => {
 const styles = StyleSheet.create({
   TopContainer: {
     flex: 1,
-    padding: 20,
+    //padding: 20,
     backgroundColor: "#fff",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
-    gap: 20,
+    gap: 10,
+    marginBottom: 20,
   },
   input: {
     height: 40,
     borderColor: "#ccc",
     borderWidth: 1,
-    marginBottom: 10,
     paddingLeft: 10,
-    borderRadius: 5,
+    borderRadius: 20,
+    justifyContent: 'center',
+  },
+  selectedText: {
+    fontSize: 16,
+    color: "blue",
   },
   resultItem: {
     padding: 5,
