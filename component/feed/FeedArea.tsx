@@ -62,8 +62,7 @@ const FeeadArea: React.FC<FeedAreaProps> = ({
         <Pressable
           style={styles.profileContainer}
           onPress={() => {
-            navigation.navigate("UserPage", { uid: uid });
-            console.log("Pressed!");
+            navigation.navigate("FoodtruckPage", { uid: uid });
           }}
         >
           <UserProfile uid={""} image_url={""} name={""}></UserProfile>

@@ -5,6 +5,7 @@ import { RecoilRoot, useRecoilState } from "recoil";
 import FeedDetailArea from "./component/search/FeedDetailArea";
 import FollowerPage from "./screen/FollowerPage";
 import FollowingPage from "./screen/FollowingPage";
+import FoodtruckPage from "./screen/FoodtruckPage";
 import HomeScreen from "./screen/HomeScreen";
 import LoginPage from "./screen/LoginPage";
 import SignupPage from "./screen/SignupPage";
@@ -17,6 +18,7 @@ export type RootStackParamList = {
   FollowingPage: undefined;
   FollowerPage: undefined;
   UserPage: { uid: String };
+  FoodtruckPage: { uid: string };
   Login: undefined;
   Signup: undefined;
 };
@@ -39,6 +41,7 @@ const App2: React.FC = () => {
         <Stack.Screen name="UserPage" component={UserPage} />
         <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Signup" component={SignupPage} />
+        <Stack.Screen name="FoodtruckPage" component={FoodtruckPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

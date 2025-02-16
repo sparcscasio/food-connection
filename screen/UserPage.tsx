@@ -50,8 +50,10 @@ const MiddleContent = ({
     </Pressable>
   );
 };
+
 type UserPageRouteProp = RouteProp<RootStackParamList, "UserPage">;
 type NavigationProp = StackNavigationProp<RootStackParamList>;
+
 const UserPage = () => {
   const navigation = useNavigation<NavigationProp>();
   const route = useRoute<UserPageRouteProp>();
@@ -115,9 +117,10 @@ const styles = StyleSheet.create({
   },
   profileContainer: {
     justifyContent: "flex-start",
-    paddingTop: 30,
+    paddingTop: 40,
     padding: 20,
-
+    paddingLeft: 30,
+    paddingBottom: 10,
     flexDirection: "row",
     gap: 20,
     alignItems: "center",
