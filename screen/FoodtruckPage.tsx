@@ -12,17 +12,6 @@ import { RootStackParamList } from "../App";
 import FeedPreview, { FeedPreviewProps } from "../component/search/FeedPreview";
 import UserProfile from "../component/storyList/UserProfile";
 
-const ProfileBox = () => {
-  return (
-    <>
-      <View style={styles.ProfileBoxContainer}>
-        <Text style={{ fontSize: 20, fontWeight: 400 }}>FoodTruckName</Text>
-        <UserProfile uid={""} image_url={""} name={""} />
-        <Text style={{ fontSize: 15, fontWeight: 400 }}>About This Truck</Text>
-      </View>
-    </>
-  );
-};
 const MiddleContent = ({
   text,
   number,
@@ -85,7 +74,21 @@ type NavigationProp = StackNavigationProp<RootStackParamList>;
 const FoodtruckPage = () => {
   const navigation = useNavigation<NavigationProp>();
   const route = useRoute<FoodtruckPageRouteProp>();
-  const { uid } = route.params;
+  const { uid } = route.params || "";
+
+  const ProfileBox = () => {
+    return (
+      <>
+        <View style={styles.ProfileBoxContainer}>
+          <Text style={{ fontSize: 20, fontWeight: 400 }}>FoodTruckName</Text>
+          <UserProfile uid={uid} image_url={""} name={""} />
+          <Text style={{ fontSize: 15, fontWeight: 400 }}>
+            About This Truck
+          </Text>
+        </View>
+      </>
+    );
+  };
 
   const placeholderSearchView: FeedPreviewProps[] = Array.from(
     { length: 90 },

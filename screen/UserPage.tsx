@@ -12,17 +12,6 @@ import { RootStackParamList } from "../App";
 import FeedPreview, { FeedPreviewProps } from "../component/search/FeedPreview";
 import UserProfile from "../component/storyList/UserProfile";
 
-const ProfileBox = () => {
-  return (
-    <>
-      <UserProfile uid={""} image_url={""} name={""} />
-      <View>
-        <Text style={{ fontSize: 20, fontWeight: 400 }}>Name</Text>
-        <Text style={{ fontSize: 15, fontWeight: 400 }}>About This Person</Text>
-      </View>
-    </>
-  );
-};
 const MiddleContent = ({
   text,
   number,
@@ -57,8 +46,21 @@ type NavigationProp = StackNavigationProp<RootStackParamList>;
 const UserPage = () => {
   const navigation = useNavigation<NavigationProp>();
   const route = useRoute<UserPageRouteProp>();
-  const { uid } = route.params;
+  const { uid } = route.params || "";
 
+  const ProfileBox = () => {
+    return (
+      <>
+        <UserProfile uid={uid} image_url={""} name={""} />
+        <View>
+          <Text style={{ fontSize: 20, fontWeight: 400 }}>Name</Text>
+          <Text style={{ fontSize: 15, fontWeight: 400 }}>
+            About This Person
+          </Text>
+        </View>
+      </>
+    );
+  };
   const placeholderSearchView: FeedPreviewProps[] = Array.from(
     { length: 90 },
     (_, index) => ({
