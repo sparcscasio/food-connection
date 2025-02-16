@@ -14,7 +14,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { Pressable, ScrollView } from "react-native-gesture-handler";
+import { Pressable } from "react-native-gesture-handler";
+import Star from "../component/feed/Star";
 import SearchById from "../component/search/SearchById";
 
 const ImageUploader: React.FC = () => {
@@ -65,11 +66,16 @@ const ImageUploader: React.FC = () => {
     setContents("");
   };
 
+  const [userStar, setUserStar] = useState(1);
+
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollableArea}>
+      <View style={styles.scrollableArea}>
         <View style={styles.SaveButton}>
-          <Pressable onPress={onPressSubmit}>
+          <Pressable
+            onPress={onPressSubmit}
+            style={{ flexDirection: "row", alignItems: "center" }}
+          >
             <Text style={styles.ButtonText}>저장</Text>
           </Pressable>
         </View>
@@ -95,23 +101,32 @@ const ImageUploader: React.FC = () => {
             <Text style={styles.ButtonText}>사진선택(최대 10장)</Text>
           </Pressable>
         </View>
-        <TextInput
-          style={[styles.textInput, { color: "black" }]}
-          value={contents}
-          onChangeText={setContents}
-          placeholder="본문 내용을 입력해주세요"
-          placeholderTextColor="grey"
-          multiline={true}
-          textAlignVertical="center"
-          returnKeyType="search"
-          onSubmitEditing={handleSearch}
-        />
-        <View style={styles.searchContainer}>
-          <View>
-            <SearchById />
-          </View>
+        <View style={{ gap: 20, justifyContent: "center" }}>
+          <TextInput
+            style={[styles.textInput, { color: "black" }]}
+            onChangeText={setContents}
+            placeholder="본문 내용을 입력해주세요"
+            placeholderTextColor="grey"
+            multiline={true}
+            textAlignVertical="center"
+            returnKeyType="search"
+            onSubmitEditing={handleSearch}
+          />
+          <SearchById />
         </View>
-      </ScrollView>
+        <TextInput
+          style={[styles.textInputStar, { color: "black" }]}
+          onChangeText={(item) => {
+            {
+              Number(item) < 6 ? setUserStar(Number(item)) : setUserStar(0);
+            }
+          }}
+          placeholder="평점"
+          placeholderTextColor="grey"
+          textAlignVertical="center"
+        />
+        <Star starCount={userStar} score={userStar * 20} />
+      </View>
     </SafeAreaView>
   );
 };
@@ -123,7 +138,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     justifyContent: "center",
     margin: 10,
-    padding: 3,
+    padding: 4,
     borderRadius: 5,
   },
   ImgPickButton: {
@@ -139,11 +154,12 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 15,
     fontWeight: "bold",
+    alignItems: "center",
   },
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     marginTop: 20,
     backgroundColor: "white",
   },
@@ -188,6 +204,16 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginBottom: 10,
   },
+  textInputStar: {
+    display: "flex",
+    width: Dimensions.get("window").width / 5,
+    fontSize: 15,
+    padding: 3,
+    paddingLeft: 15,
+    paddingRight: 15,
+    backgroundColor: "lightgrey",
+    borderRadius: 15,
+  },
   searchArea: {
     width: "100%",
     flexShrink: 1,
@@ -207,7 +233,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
   },
-  searchContainer: {},
 });
 
 export default ImageUploader;
