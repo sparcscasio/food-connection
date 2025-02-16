@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
 const LoginPage = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
@@ -25,7 +25,11 @@ const LoginPage = ({ navigation }: any) => {
         value={password}
         onChangeText={setPassword}
       />
-      <Button title="Login" onPress={handleLogin} />
+      <View style={styles.Button}>
+        <Pressable onPress={handleLogin}>
+          <Text style={styles.ButtonText}>Login</Text>
+        </Pressable>
+      </View>
       <Text style={styles.link} onPress={() => navigation.navigate("Signup")}>
         Don't have an account? Sign Up
       </Text>
@@ -38,6 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     padding: 20,
+    gap: 5,
   },
   title: {
     fontSize: 24,
@@ -45,16 +50,26 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   input: {
-    height: 40,
+    height: 45,
     borderColor: "gray",
     borderWidth: 1,
-    marginBottom: 10,
+    marginBottom: 8,
     paddingLeft: 8,
   },
   link: {
     marginTop: 10,
     color: "blue",
     textDecorationLine: "underline",
+  },
+  Button: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "black",
+    padding: 7,
+  },
+  ButtonText: {
+    color: "white",
+    fontSize: 15,
   },
 });
 export default LoginPage;
