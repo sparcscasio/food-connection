@@ -20,6 +20,7 @@ import SearchById from "../component/search/SearchById";
 
 const ImageUploader: React.FC = () => {
   const [images, setImages] = useState<string[]>([]);
+  const [selectedId, setSelectedId] = useState<string>("");
 
   const pickImages = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -52,12 +53,13 @@ const ImageUploader: React.FC = () => {
 
   const onPressSubmit = () => {
     console.log(`${images}`);
+    console.log(selectedId);
+    console.log(contents);
   };
 
   const [contents, setContents] = useState("");
-  const [tag, setTag] = useState("");
 
-  const handleSearch = () => {
+  const handleSubmit = () => {
     console.log(contents);
   };
 
@@ -110,9 +112,9 @@ const ImageUploader: React.FC = () => {
             multiline={true}
             textAlignVertical="center"
             returnKeyType="search"
-            onSubmitEditing={handleSearch}
+            onSubmitEditing={handleSubmit}
           />
-          <SearchById />
+          <SearchById selectedId={selectedId} setSelectedId={setSelectedId}/>
         </View>
         <TextInput
           style={[styles.textInputStar, { color: "black" }]}

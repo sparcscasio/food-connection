@@ -1,5 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import {
   FlatList,
   Pressable,
@@ -14,10 +14,13 @@ interface User {
   name: string;
 }
 
-const SearchById = () => {
-  const [searchId, setSearchId] = useState<string>(""); // 검색 ID
-  const [selectedId, setSelectedId] = useState<string>("");
-  const [selectedName, setSelectedName] = useState<string>("");
+interface SearchbyIDProps {
+  selectedId : string;
+  setSelectedId : Dispatch<SetStateAction<string>>;
+}
+
+const SearchById : React.FC<SearchbyIDProps> = ({ selectedId, setSelectedId }) => {
+  const [searchId, setSearchId] = useState<string>("");
   const [users, setUsers] = useState<User[]>([]); // 사용자 목록
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]); // 필터링된 사용자 목록
 
@@ -72,10 +75,6 @@ const SearchById = () => {
       </View>
     </Pressable>
   );
-
-  // function handleCancel(event: GestureResponderEvent): void {
-  //   throw new Error("Function not implemented.");
-  // }
 
   const handleCancel = () => {
     setSearchId("");
