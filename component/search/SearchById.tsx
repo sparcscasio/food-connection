@@ -85,8 +85,7 @@ const SearchById = () => {
   return (
     <>
       <View style={styles.TopContainer}>
-        {/* TextInput: 검색을 위한 입력란 */}
-        <View style={{ flex: 1 }}>
+        <View style={styles.wrapper}>
           {selectedId ? (
             <View style={styles.input}>
               <Pressable>
@@ -103,14 +102,14 @@ const SearchById = () => {
               onChangeText={handleSearchInput}
             />
           )}
-        </View>
-
-        <MaterialIcons
-          name="cancel"
+          <MaterialIcons
+          name="close"
           size={24}
           color="grey"
           onPress={handleCancel}
-        />
+          style={styles.iconButton}
+          />
+        </View>
       </View>
       <View>
         {/* 검색 결과를 보여주는 FlatList */}
@@ -140,7 +139,14 @@ const styles = StyleSheet.create({
     gap: 10,
     marginBottom: 20,
   },
+  wrapper: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+  },
   input: {
+    width: '100%',
+    flexShrink: 1,
     height: 40,
     borderColor: "#ccc",
     borderWidth: 1,
@@ -165,6 +171,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "gray",
   },
+  iconButton: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 export default SearchById;
