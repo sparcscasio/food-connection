@@ -27,7 +27,9 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 const App2: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
+  //const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
+  const isLoggedIn = false;
+
   return (
     <NavigationContainer>
       <Stack.Navigator

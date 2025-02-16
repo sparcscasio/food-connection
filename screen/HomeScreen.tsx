@@ -8,6 +8,7 @@ import MapPage from "./MapPage";
 import MyPage from "./MyPage";
 import NewPostPage from "./NewPostPage";
 import SearchPage from "./SearchPage";
+import { userInfoState } from "../utils/recoil/atoms/userInfo";
 
 const Tab = createBottomTabNavigator();
 

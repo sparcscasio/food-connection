@@ -18,7 +18,7 @@ const SignupPage = ({ navigation }: any) => {
       alert("Passwords do not match!");
       return;
     }
-    // 회원가입 로직 (예: 서버 요청)
+
     console.log("Signed up with", email, password);
     setIsLoggedIn(true);
     navigation.reset({

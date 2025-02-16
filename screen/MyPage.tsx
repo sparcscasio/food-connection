@@ -7,7 +7,7 @@ interface MyPageProps {
   role?: string;
 }
 
-const MyPage: React.FC<MyPageProps> = ({ role = "" }) => {
+const MyPage: React.FC<MyPageProps> = ({ role = "user" }) => {
   return (
     <SafeAreaView>
       {role === "user" ? <UserPage /> : <FoodtruckPage />}

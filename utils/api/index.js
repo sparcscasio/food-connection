@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
-const API_BASE_URL = "https://example.pinboxapp.com"; // API의 기본 URL
+const API_BASE_URL = "https://vq2llfnllb.execute-api.ap-northeast-2.amazonaws.com/test1"; // API의 기본 URL
 const TOKEN_STORAGE_KEY = "authToken"; // 토큰 저장 키
 
 const apiClient = axios.create({
@@ -14,7 +14,6 @@ const apiClient = axios.create({
 // 요청에 토큰 추가
 apiClient.interceptors.request.use(
   async (config) => {
-    const token = await getAuthToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
