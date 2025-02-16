@@ -19,6 +19,7 @@ export type RootStackParamList = {
   UserPage: { uid: String };
   Login: undefined;
   Signup: undefined;
+  HomeScreen : undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -39,6 +40,7 @@ const App2: React.FC = () => {
         <Stack.Screen name="UserPage" component={UserPage} />
         <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Signup" component={SignupPage} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
