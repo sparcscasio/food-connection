@@ -2,7 +2,6 @@ import { MaterialIcons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import {
   FlatList,
-  GestureResponderEvent,
   Pressable,
   StyleSheet,
   Text,
@@ -31,11 +30,11 @@ const SearchById = () => {
   ];
 
   const getUserNameById = (id: string): string | undefined => {
-    const user = dummyUsers.find(user => user.id === id);
+    const user = dummyUsers.find((user) => user.id === id);
     return user ? user.name : undefined; // id가 없으면 undefined 반환
   };
 
-  const handleIdPress = (id : string) => {
+  const handleIdPress = (id: string) => {
     console.log(id);
     setSelectedId(id);
   };
@@ -61,7 +60,11 @@ const SearchById = () => {
   };
 
   const renderItem = ({ item }: { item: User }) => (
-    <Pressable onPress={() => {handleIdPress(item.id)}}>
+    <Pressable
+      onPress={() => {
+        handleIdPress(item.id);
+      }}
+    >
       <View style={styles.resultItem}>
         <Text style={styles.resultText}>
           {item.name} ({item.id})
@@ -77,46 +80,50 @@ const SearchById = () => {
   const handleCancel = () => {
     setSearchId("");
     setSelectedId("");
-  }
+  };
 
   return (
     <>
       <View style={styles.TopContainer}>
         {/* TextInput: 검색을 위한 입력란 */}
         <View style={{ flex: 1 }}>
-          { selectedId ? 
-              <View style={styles.input}>
-                <Pressable>
-                  <Text style={styles.selectedText}>
-                    {`@${getUserNameById(selectedId)}`}
-                  </Text>
-                </Pressable>
-              </View>
-              : <TextInput
-                style={styles.input}
-                placeholder="ID / 이름"
-                value={searchId}
-                onChangeText={handleSearchInput}
-              />
-          }
+          {selectedId ? (
+            <View style={styles.input}>
+              <Pressable>
+                <Text style={styles.selectedText}>
+                  {`@${getUserNameById(selectedId)}`}
+                </Text>
+              </Pressable>
+            </View>
+          ) : (
+            <TextInput
+              style={styles.input}
+              placeholder="ID / 이름"
+              value={searchId}
+              onChangeText={handleSearchInput}
+            />
+          )}
         </View>
-          <MaterialIcons
-            name="cancel"
-            size={24}
-            color="grey"
-            onPress={handleCancel}
-          />
+
+        <MaterialIcons
+          name="cancel"
+          size={24}
+          color="grey"
+          onPress={handleCancel}
+        />
       </View>
       <View>
         {/* 검색 결과를 보여주는 FlatList */}
-        { searchId && !selectedId && <FlatList
-          data={filteredUsers}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          ListEmptyComponent={
-            <Text style={styles.emptyText}>No results found</Text>
-          }
-        /> }
+        {searchId && !selectedId && (
+          <FlatList
+            data={filteredUsers}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            ListEmptyComponent={
+              <Text style={styles.emptyText}>No results found</Text>
+            }
+          />
+        )}
       </View>
     </>
   );
@@ -139,7 +146,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingLeft: 10,
     borderRadius: 20,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   selectedText: {
     fontSize: 16,
